@@ -15,7 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls.conf import include
+from libraryrest import views
+from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken.views import obtain_auth_token
+
+router = DefaultRouter()
+router.register('customer', views.CustomerViewSet, basename='customer')
+router.register('tag', views.TagViewSet, basename='tag')
+router.register('product', views.ProductViewSet, basename='product')
+router.register('order', views.OrderViewSet, basename='order')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('viewset/', include(router.urls)),
+    path('gettoken/', obtain_auth_token),
 ]
