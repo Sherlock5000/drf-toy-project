@@ -48,7 +48,7 @@ The contents of this directory include:
 25. Type ```\i drop_db.sql``` to drop the database for the project. Type ```\q``` to exit this prompt.
 26. Type ```deactivate``` to deactivate the virtual environment.
 
-## **Steps to generate tokens for every user**
+## **Steps to generate tokens for every user (Token Authentication)**
 
 1. Open Postman application.
 2. Enter the link for the project in the bar.
