@@ -4,7 +4,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
 
 from libraryrest.models import Customer, Order, Product, Tag
-from libraryrest.serializers import CustomerSerializer, OrderSerializer, ProductSerializer, TagSerializer
+from libraryrest.serializers import CustomerSerializer, OrderSerializer,\
+                                    ProductSerializer, TagSerializer
 
 # Create your views here.
 
