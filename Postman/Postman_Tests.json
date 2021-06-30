@@ -13,8 +13,10 @@
 					"script": {
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {",
-							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
-							"});"
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							"const response = pm.response.json();",
+							"pm.globals.set(\"token\", response.token);"
 						],
 						"type": "text/javascript"
 					}
@@ -77,7 +79,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -116,7 +118,9 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
-							"});"
+							"});",
+							"const response = pm.response.json();",
+							"pm.globals.set(\"custid\", response[0].id);"
 						],
 						"type": "text/javascript"
 					}
@@ -128,7 +132,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -168,7 +172,9 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
-							"});"
+							"});",
+							"const response = pm.response.json();",
+							"pm.globals.set(\"tagid\", response[0].id);"
 						],
 						"type": "text/javascript"
 					}
@@ -180,7 +186,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -220,7 +226,9 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
-							"});"
+							"});",
+							"const response = pm.response.json();",
+							"pm.globals.set(\"productid\", response[0].id);"
 						],
 						"type": "text/javascript"
 					}
@@ -232,7 +240,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -270,9 +278,12 @@
 					"listen": "test",
 					"script": {
 						"exec": [
+							"const response = pm.response.json();",
+							"pm.globals.set(\"orderid\", response[0].id);",
 							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
+							"    pm.response.to.have.status(200)",
+							"});",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -284,7 +295,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -336,7 +347,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -349,7 +360,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/viewset/customer/3/",
+					"raw": "http://127.0.0.1:8000/viewset/customer/{{custid}}/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -361,7 +372,7 @@
 					"path": [
 						"viewset",
 						"customer",
-						"3",
+						"{{custid}}",
 						""
 					]
 				}
@@ -389,7 +400,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -402,7 +413,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/viewset/tag/2/",
+					"raw": "http://127.0.0.1:8000/viewset/tag/{{tagid}}/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -414,7 +425,7 @@
 					"path": [
 						"viewset",
 						"tag",
-						"2",
+						"{{tagid}}",
 						""
 					]
 				}
@@ -442,7 +453,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -455,7 +466,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/viewset/product/2/",
+					"raw": "http://127.0.0.1:8000/viewset/product/{{productid}}/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -467,7 +478,7 @@
 					"path": [
 						"viewset",
 						"product",
-						"2",
+						"{{productid}}",
 						""
 					]
 				}
@@ -495,7 +506,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -508,7 +519,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/viewset/order/2/",
+					"raw": "http://127.0.0.1:8000/viewset/order/{{orderid}}/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -520,7 +531,7 @@
 					"path": [
 						"viewset",
 						"order",
-						"2",
+						"{{orderid}}",
 						""
 					]
 				}
@@ -548,7 +559,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -562,7 +573,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"User6\",\n    \"phone\": \"678910\",\n    \"email\": \"user6@email.com\"\n}",
+					"raw": "{\n    \"name\": \"NewUser1\",\n    \"phone\": \"92733811\",\n    \"email\": \"newuser1@email.com\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -609,7 +620,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -623,7 +634,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Crime\"\n}",
+					"raw": "{\n    \"name\": \"Biography\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -670,7 +681,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -684,7 +695,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Book6\",\n    \"price\": 10,\n    \"category\": \"Indoor\",\n    \"description\": null,\n    \"tags\": [\n        2\n    ]\n}",
+					"raw": "{\n    \"name\": \"Book 17\",\n    \"price\": 10,\n    \"category\": \"Indoor\",\n    \"description\": null,\n    \"tags\": [\n        2\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -731,7 +742,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -745,7 +756,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"status\": \"Pending\",\n    \"note\": \"Borrowing new book\",\n    \"customer\": 4,\n    \"product\": 6\n}",
+					"raw": "{\n    \"status\": \"Pending\",\n    \"note\": \"Borrowing latest book\",\n    \"customer\": 2,\n    \"product\": 2\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -792,7 +803,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -806,7 +817,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"User6\",\n    \"phone\": \"678901\",\n    \"email\": \"user6@mail.com\"\n}",
+					"raw": "{\n    \"name\": \"User1\",\n    \"phone\": \"678901\",\n    \"email\": \"user1@mail.com\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -814,7 +825,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/viewset/customer/9/",
+					"raw": "http://127.0.0.1:8000/viewset/customer/{{custid}}/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -826,7 +837,7 @@
 					"path": [
 						"viewset",
 						"customer",
-						"9",
+						"{{custid}}",
 						""
 					]
 				}
@@ -854,7 +865,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -876,7 +887,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/viewset/tag/5/",
+					"raw": "http://127.0.0.1:8000/viewset/tag/{{tagid}}/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -888,7 +899,7 @@
 					"path": [
 						"viewset",
 						"tag",
-						"5",
+						"{{tagid}}",
 						""
 					]
 				}
@@ -916,7 +927,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -930,7 +941,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"name\": \"Book6\",\n        \"price\": 12.0,\n        \"category\": \"Indoor\",\n        \"description\": null,\n        \"tags\": [\n            2\n        ]\n    }",
+					"raw": "{\n        \"name\": \"Book 17\",\n        \"price\": 12.0,\n        \"category\": \"Indoor\",\n        \"description\": null,\n        \"tags\": [\n            2\n        ]\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -938,7 +949,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/viewset/product/7/",
+					"raw": "http://127.0.0.1:8000/viewset/product/{{productid}}/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -950,7 +961,7 @@
 					"path": [
 						"viewset",
 						"product",
-						"7",
+						"{{productid}}",
 						""
 					]
 				}
@@ -978,7 +989,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -992,7 +1003,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"status\": \"Pending\",\n    \"note\": \"Exchanging Book\",\n    \"customer\": 4,\n    \"product\": 6\n}",
+					"raw": "{\n    \"status\": \"Pending\",\n    \"note\": \"Book pending\",\n    \"customer\": 2,\n    \"product\": 2\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1000,7 +1011,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/viewset/order/5/",
+					"raw": "http://127.0.0.1:8000/viewset/order/{{orderid}}/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1012,7 +1023,7 @@
 					"path": [
 						"viewset",
 						"order",
-						"5",
+						"{{orderid}}",
 						""
 					]
 				}
@@ -1040,7 +1051,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -1053,7 +1064,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/viewset/customer/5/",
+					"raw": "http://127.0.0.1:8000/viewset/customer/{{custid}}/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1065,7 +1076,7 @@
 					"path": [
 						"viewset",
 						"customer",
-						"5",
+						"{{custid}}",
 						""
 					]
 				}
@@ -1093,7 +1104,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -1106,7 +1117,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/viewset/tag/4/",
+					"raw": "http://127.0.0.1:8000/viewset/tag/{{tagid}}/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1118,7 +1129,7 @@
 					"path": [
 						"viewset",
 						"tag",
-						"4",
+						"{{tagid}}",
 						""
 					]
 				}
@@ -1146,7 +1157,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -1159,7 +1170,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/viewset/product/6/",
+					"raw": "http://127.0.0.1:8000/viewset/product/{{productid}}/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1171,7 +1182,7 @@
 					"path": [
 						"viewset",
 						"product",
-						"6",
+						"{{productid}}",
 						""
 					]
 				}
@@ -1199,7 +1210,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "Token aa236aa1bad5ae05105a703e335346ffa181e87c",
+							"value": "Token {{token}}",
 							"type": "string"
 						},
 						{
@@ -1212,7 +1223,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/viewset/order/4/",
+					"raw": "http://127.0.0.1:8000/viewset/order/{{orderid}}/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1224,7 +1235,7 @@
 					"path": [
 						"viewset",
 						"order",
-						"4",
+						"{{orderid}}",
 						""
 					]
 				}
